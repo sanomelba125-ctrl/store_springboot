@@ -52,7 +52,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/webjars/**",
                         "/v3/api-docs/**",
                         "/swagger-resources/**",
-                        "/image/**"
+                        "/image/**",
+                        "/api/alipay/notify",
+                        "/api/alipay/query"
                 );
     }
 }
