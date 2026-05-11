@@ -1,0 +1,795 @@
+2026-04-14T10:39:33.124+08:00  INFO 3824 --- [store] [main] com.example.store.StoreApplication       : Starting StoreApplication using Java 17.0.17 with PID 3824 (D:\1download\1ASpring Boot作业夹\store\target\classes started by chenchuang in D:\1download\1ASpring Boot作业夹\store)
+2026-04-14T10:39:33.124+08:00  INFO 3824 --- [store] [main] com.example.store.StoreApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-04-14T10:39:33.727+08:00  INFO 3824 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-14T10:39:33.733+08:00  INFO 3824 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-14T10:39:33.758+08:00  INFO 3824 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-04-14T10:39:34.261+08:00  INFO 3824 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8088 (http)
+2026-04-14T10:39:34.270+08:00  INFO 3824 --- [store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-14T10:39:34.270+08:00  INFO 3824 --- [store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-04-14T10:39:34.322+08:00  INFO 3824 --- [store] [main] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring embedded WebApplicationContext
+2026-04-14T10:39:34.322+08:00  INFO 3824 --- [store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1168 ms
+2026-04-14T10:39:35.098+08:00  INFO 3824 --- [store] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-04-14T10:39:35.522+08:00  INFO 3824 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8088 (http) with context path '/store'
+2026-04-14T10:39:35.532+08:00  INFO 3824 --- [store] [main] com.example.store.StoreApplication       : Started StoreApplication in 2.728 seconds (process running for 6.258)
+2026-04-14T10:39:54.976+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-14T10:39:54.976+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-14T10:39:54.978+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-04-14T10:39:55.053+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:39:55.054+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/captcha
+2026-04-14T10:39:55.056+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:39:55.056+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getCaptcha
+2026-04-14T10:39:55.056+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:39:55.056+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/login
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.login
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [LoginDTO(username=cc, password=123456, code=ul4y, uuid=25f07631-0170-4266-9669-916da3a02517)]
+2026-04-14T10:41:24.032+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:24.144+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-14T10:41:24.329+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@561735a
+2026-04-14T10:41:24.333+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-14T10:41:24.699+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:24.707+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:41:24.707+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:24.708+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:41:24.708+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:41:24.708+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:24.713+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:24.713+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:24.714+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:24.714+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:24.714+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:41:24.714+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:24.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:24.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:41:24.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:24.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:41:24.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:41:24.744+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:24.749+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:24.749+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:41:24.749+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:24.749+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:41:24.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:41:24.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:28.810+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:28.811+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:28.811+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:28.811+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:28.811+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [2, 10, null, null, null]
+2026-04-14T10:41:28.811+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:41:30.118+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, 手机, null, null]
+2026-04-14T10:41:46.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, 苹果, null, null]
+2026-04-14T10:41:50.022+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, ip, null, null]
+2026-04-14T10:41:56.362+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, 手机, null, null]
+2026-04-14T10:42:01.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, , null, cat001]
+2026-04-14T10:42:03.607+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/4592c6b8-e21d-11f0-a35a-088fc3e477f5
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [4592c6b8-e21d-11f0-a35a-088fc3e477f5]
+2026-04-14T10:42:07.547+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:07.549+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:07.549+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:07.550+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:07.550+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:07.550+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:07.550+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:07.566+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:07.567+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:42:07.567+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:07.567+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:42:07.567+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:42:07.567+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:09.789+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:09.789+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:09.789+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:09.789+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, shop001, null]
+2026-04-14T10:42:09.790+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:42:09.792+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:11.742+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:42:11.743+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:11.750+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:16.588+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:16.588+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/75bd0564861d12b1f0f16764cc02833c
+2026-04-14T10:42:16.588+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:16.588+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [75bd0564861d12b1f0f16764cc02833c]
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:16.589+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/93076692e78f77b97987e8a4082ae88e
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [93076692e78f77b97987e8a4082ae88e]
+2026-04-14T10:42:16.605+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:18.268+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:18.273+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:42:18.273+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:18.280+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:42:18.282+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:18.282+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:42:18.282+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:18.282+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, huawei, null, null]
+2026-04-14T10:42:21.722+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/list
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.list
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [1, 100, huawei]
+2026-04-14T10:42:25.685+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, 93076692e78f77b97987e8a4082ae88e, null]
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:27.248+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/93076692e78f77b97987e8a4082ae88e
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [93076692e78f77b97987e8a4082ae88e]
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:27.249+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:42:29.647+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:42:29.648+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:29.651+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:29.652+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:42:29.652+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:29.653+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:32.042+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:32.042+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:32.042+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:32.042+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:32.043+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/address/list/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserAddressController.list
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:42:35.101+08:00  INFO 3824 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:38.047+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:38.048+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:38.048+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:38.048+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:38.048+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:42:38.048+08:00  INFO 3824 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 0]
+2026-04-14T10:42:50.757+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:51.516+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:51.517+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:51.517+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:51.517+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:51.517+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 1]
+2026-04-14T10:42:51.517+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:42:52.029+08:00  INFO 3824 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:42:52.466+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:52.965+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:52.965+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:52.965+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:52.965+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:52.966+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:42:52.966+08:00  INFO 3824 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:53.338+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:53.339+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:53.339+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:53.339+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:53.339+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, -99]
+2026-04-14T10:42:53.339+08:00  INFO 3824 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:53.681+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:53.681+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:53.682+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:53.682+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:53.682+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:42:53.682+08:00  INFO 3824 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:42:54.569+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:42:54.569+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:42:54.569+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:42:54.570+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:42:54.570+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, -99]
+2026-04-14T10:42:54.570+08:00  INFO 3824 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:43:04.819+08:00  INFO 3824 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, -99]
+2026-04-14T10:43:05.392+08:00  INFO 3824 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:43:06.827+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:43:06.828+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:43:06.828+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:43:06.828+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:43:06.828+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 2, 5, -99]
+2026-04-14T10:43:06.828+08:00  INFO 3824 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:56:51.874+08:00  INFO 3824 --- [store] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-14T10:56:51.933+08:00  INFO 3824 --- [store] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-14T10:56:51.945+08:00  INFO 3824 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-14T10:56:51.950+08:00  INFO 3824 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-14T10:56:56.852+08:00  INFO 24136 --- [store] [main] com.example.store.StoreApplication       : Starting StoreApplication using Java 17.0.17 with PID 24136 (D:\1download\1ASpring Boot作业夹\store\target\classes started by chenchuang in D:\1download\1ASpring Boot作业夹\store)
+2026-04-14T10:56:56.854+08:00  INFO 24136 --- [store] [main] com.example.store.StoreApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-04-14T10:56:57.436+08:00  INFO 24136 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-14T10:56:57.438+08:00  INFO 24136 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-14T10:56:57.464+08:00  INFO 24136 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-04-14T10:56:57.903+08:00  INFO 24136 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8088 (http)
+2026-04-14T10:56:57.913+08:00  INFO 24136 --- [store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-14T10:56:57.913+08:00  INFO 24136 --- [store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-04-14T10:56:57.981+08:00  INFO 24136 --- [store] [main] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring embedded WebApplicationContext
+2026-04-14T10:56:57.981+08:00  INFO 24136 --- [store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1093 ms
+2026-04-14T10:56:58.755+08:00  INFO 24136 --- [store] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-04-14T10:56:59.243+08:00  INFO 24136 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8088 (http) with context path '/store'
+2026-04-14T10:56:59.251+08:00  INFO 24136 --- [store] [main] com.example.store.StoreApplication       : Started StoreApplication in 2.72 seconds (process running for 3.248)
+2026-04-14T10:57:59.447+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-14T10:57:59.447+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-14T10:57:59.447+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-04-14T10:58:00.257+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:00.257+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:00.257+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:00.257+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:00.262+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:00.262+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:00.264+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:00.283+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-14T10:58:00.483+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4300b858
+2026-04-14T10:58:00.487+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:02.113+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:03.131+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:03.131+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:58:03.131+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:03.131+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:58:03.131+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:03.138+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:03.139+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:03.139+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:58:03.140+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:03.140+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:58:03.140+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:58:03.140+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:03.143+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:03.143+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:03.143+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:03.144+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:58:03.145+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:03.145+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/4592c6b8-e21d-11f0-a35a-088fc3e477f5
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [4592c6b8-e21d-11f0-a35a-088fc3e477f5]
+2026-04-14T10:58:04.658+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:04.663+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:04.675+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:04.676+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:58:04.676+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:04.676+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:58:04.676+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:58:04.676+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:05.942+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/cart/list
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopcartController.list
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, ]
+2026-04-14T10:58:05.968+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:07.441+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:07.441+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:58:07.442+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:07.445+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:07.446+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:08.571+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:08.571+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/4592c6b8-e21d-11f0-a35a-088fc3e477f5
+2026-04-14T10:58:08.572+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:08.572+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:58:08.572+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [4592c6b8-e21d-11f0-a35a-088fc3e477f5]
+2026-04-14T10:58:08.572+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:08.577+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:08.585+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:08.585+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:58:08.585+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:08.585+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:58:08.585+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:58:08.586+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:09.385+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:09.385+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/cart/add
+2026-04-14T10:58:09.386+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:09.386+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopcartController.add
+2026-04-14T10:58:09.386+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, Shopcart(id=null, userId=null, goodsId=4592c6b8-e21d-11f0-a35a-088fc3e477f5, number=1, addPrice=null, createTime=null)]
+2026-04-14T10:58:09.386+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:09.422+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:09.423+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:09.423+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:09.423+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:09.423+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:09.423+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, shop001, null]
+2026-04-14T10:58:11.281+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:11.284+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:58:11.285+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:58:11.285+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:11.285+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:11.285+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:12.621+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:12.622+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/69a2244fbb877d83bc74566621066bf7
+2026-04-14T10:58:12.622+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:12.622+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:58:12.622+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [69a2244fbb877d83bc74566621066bf7]
+2026-04-14T10:58:12.622+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop001
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [shop001]
+2026-04-14T10:58:12.647+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T10:58:14.105+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T10:58:14.106+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.110+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T10:58:14.111+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.628+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.629+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/detail/4592d7ce-e21d-11f0-a35a-088fc3e477f5
+2026-04-14T10:58:14.629+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.629+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.detail
+2026-04-14T10:58:14.629+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [4592d7ce-e21d-11f0-a35a-088fc3e477f5]
+2026-04-14T10:58:14.629+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:14.632+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:14.644+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:14.644+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/shop/detail/shop002
+2026-04-14T10:58:14.644+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:14.644+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopController.detail
+2026-04-14T10:58:14.644+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [shop002]
+2026-04-14T10:58:14.645+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/cart/add
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopcartController.add
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, Shopcart(id=null, userId=null, goodsId=4592d7ce-e21d-11f0-a35a-088fc3e477f5, number=1, addPrice=null, createTime=null)]
+2026-04-14T10:58:15.551+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:15.566+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:15.567+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:15.567+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:15.567+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:15.567+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:15.567+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/cart/list
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.ShopcartController.list
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, ]
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:16.421+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/address/list/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserAddressController.list
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:18.815+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:20.871+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:20.872+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/add
+2026-04-14T10:58:20.872+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:20.872+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.add
+2026-04-14T10:58:20.872+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, OrderSubmitDTO(addressId=1e3584a6fd2f9d81f2692c8de449c093, cartIds=[e191304bbb57b97ba3752a3602035a3d, 40efeb5558ec735a7b6e8835a0157e60], goodsId=null, number=null)]
+2026-04-14T10:58:20.872+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:20.939+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:20.939+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:20.939+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:20.940+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/pay
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.pay
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 0e3326ae7ef39a0f52415a018e174447]
+2026-04-14T10:58:36.020+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:36.039+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:36.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:36.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:36.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:36.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:58:36.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-6] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:38.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:38.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/pay
+2026-04-14T10:58:38.040+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:38.041+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.pay
+2026-04-14T10:58:38.041+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, d22791ef6a1cf6921415c02d44deb399]
+2026-04-14T10:58:38.041+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:58:38.058+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 0]
+2026-04-14T10:58:39.226+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:44.122+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:44.123+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:44.123+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:44.123+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:44.123+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 1]
+2026-04-14T10:58:44.123+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:46.971+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:46.971+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:46.972+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:46.972+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:46.972+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:58:46.972+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:58:51.595+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:52.170+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:52.171+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:52.171+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:52.171+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:52.171+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, -99]
+2026-04-14T10:58:52.171+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:52.810+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:52.810+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:52.810+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:52.810+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:52.810+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:58:52.811+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:58:53.201+08:00  INFO 24136 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:55.082+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:55.083+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/receive
+2026-04-14T10:58:55.083+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T10:58:55.083+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.receive
+2026-04-14T10:58:55.083+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 15d21286d6d28963dabe8ccf85723148]
+2026-04-14T10:58:55.083+08:00  INFO 24136 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:58:55.098+08:00  INFO 24136 --- [store] [http-nio-8088-exec-5] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 3]
+2026-04-14T10:58:55.777+08:00  INFO 24136 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:57.010+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:57.010+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:57.011+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:57.011+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:57.011+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, -99]
+2026-04-14T10:58:57.011+08:00  INFO 24136 --- [store] [http-nio-8088-exec-2] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 2]
+2026-04-14T10:58:57.708+08:00  INFO 24136 --- [store] [http-nio-8088-exec-4] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 1]
+2026-04-14T10:58:58.081+08:00  INFO 24136 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, 0]
+2026-04-14T10:58:58.547+08:00  INFO 24136 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/order/list
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.OrderController.list
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : 请求参数: [d87643c925184e65ad037dde3559db1b, 1, 5, null]
+2026-04-14T10:58:59.059+08:00  INFO 24136 --- [store] [http-nio-8088-exec-7] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T11:24:53.540+08:00  INFO 24136 --- [store] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-14T11:24:53.618+08:00  INFO 24136 --- [store] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-14T11:24:53.666+08:00  INFO 24136 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-14T11:24:53.667+08:00  INFO 24136 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-14T14:50:59.966+08:00  INFO 29868 --- [store] [main] com.example.store.StoreApplication       : Starting StoreApplication using Java 17.0.17 with PID 29868 (D:\1download\1ASpring Boot作业夹\store\target\classes started by chenchuang in D:\1download\1ASpring Boot作业夹\store)
+2026-04-14T14:50:59.968+08:00  INFO 29868 --- [store] [main] com.example.store.StoreApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-04-14T14:51:00.813+08:00  INFO 29868 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-14T14:51:00.815+08:00  INFO 29868 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-14T14:51:00.846+08:00  INFO 29868 --- [store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2026-04-14T14:51:01.451+08:00  INFO 29868 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8088 (http)
+2026-04-14T14:51:01.464+08:00  INFO 29868 --- [store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-14T14:51:01.464+08:00  INFO 29868 --- [store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-04-14T14:51:01.557+08:00  INFO 29868 --- [store] [main] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring embedded WebApplicationContext
+2026-04-14T14:51:01.558+08:00  INFO 29868 --- [store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1550 ms
+2026-04-14T14:51:02.766+08:00  INFO 29868 --- [store] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-04-14T14:51:03.249+08:00  INFO 29868 --- [store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8088 (http) with context path '/store'
+2026-04-14T14:51:03.258+08:00  INFO 29868 --- [store] [main] com.example.store.StoreApplication       : Started StoreApplication in 3.679 seconds (process running for 4.639)
+2026-04-14T14:51:19.480+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/store]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-14T14:51:19.480+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-14T14:51:19.482+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-14T14:51:19.550+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:19.551+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/captcha
+2026-04-14T14:51:19.553+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T14:51:19.554+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getCaptcha
+2026-04-14T14:51:19.554+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T14:51:19.555+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T14:51:28.604+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:28.604+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/login
+2026-04-14T14:51:28.604+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求方式: POST
+2026-04-14T14:51:28.604+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.login
+2026-04-14T14:51:28.605+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : 请求参数: [LoginDTO(username=cc, password=123456, code=5kea, uuid=f709e688-5fda-48bc-ae71-412bad5f931f)]
+2026-04-14T14:51:28.605+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T14:51:28.712+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-14T14:51:28.904+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3b793779
+2026-04-14T14:51:28.906+08:00  INFO 29868 --- [store] [http-nio-8088-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-14T14:51:29.255+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:29.256+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/hot
+2026-04-14T14:51:29.256+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T14:51:29.256+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.hot
+2026-04-14T14:51:29.256+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T14:51:29.256+08:00  INFO 29868 --- [store] [http-nio-8088-exec-10] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/goods/list
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.GoodsController.list
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : 请求参数: [1, 10, null, null, null]
+2026-04-14T14:51:29.262+08:00  INFO 29868 --- [store] [http-nio-8088-exec-9] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T14:51:29.285+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:29.286+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/category/tree
+2026-04-14T14:51:29.286+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T14:51:29.286+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.CategoryController.getTree
+2026-04-14T14:51:29.286+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : 请求参数: []
+2026-04-14T14:51:29.286+08:00  INFO 29868 --- [store] [http-nio-8088-exec-8] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T14:51:29.295+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志开始 ==============
+2026-04-14T14:51:29.295+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求地址: http://localhost:8088/store/user/info/c3d4587dcef6f7fc62cf35453516be76
+2026-04-14T14:51:29.295+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求方式: GET
+2026-04-14T14:51:29.295+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 执行方法: com.example.store.controller.UserController.getUserInfo
+2026-04-14T14:51:29.296+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : 请求参数: [c3d4587dcef6f7fc62cf35453516be76]
+2026-04-14T14:51:29.296+08:00  INFO 29868 --- [store] [http-nio-8088-exec-1] com.example.store.aspect.LogAspect       : ============== AOP日志结束 ==============
+2026-04-14T15:57:46.583+08:00  INFO 29868 --- [store] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-14T15:57:47.258+08:00  INFO 29868 --- [store] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-14T15:57:47.360+08:00  INFO 29868 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-14T15:57:47.363+08:00  INFO 29868 --- [store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
