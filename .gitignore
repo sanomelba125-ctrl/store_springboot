@@ -1,10 +1,25 @@
-HELP.md
+# Maven 编译输出
 target/
+
+# Maven Wrapper jar（现代版本不再需要，由 mvnw 脚本自动下载）
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# 日志文件
+logs/
+*.log
+
+# Spring Initializr 自动生成的帮助文档，无实际意义
+HELP.md
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse / STS ###
 .apt_generated
 .classpath
 .factorypath
@@ -13,16 +28,9 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 build/
