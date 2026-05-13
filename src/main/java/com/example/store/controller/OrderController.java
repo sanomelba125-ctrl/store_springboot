@@ -128,4 +128,22 @@ public class OrderController {
         String userId = getUserId(token);
         return orderService.applyRefund(userId, orderId, reason);
     }
+
+    @Operation(summary = "用户删除订单")
+    @PostMapping("/delete")
+    public Result deleteByUser(@RequestHeader("token") String token,
+                               @RequestParam String orderId) {
+        String userId = getUserId(token);
+        if (userId == null) return new Result().againLogin("请先登录");
+        return orderService.deleteByUser(userId, orderId);
+    }
+
+    @Operation(summary = "商家删除订单")
+    @PostMapping("/shop/delete")
+    public Result deleteByShop(@RequestHeader("token") String token,
+                               @RequestParam String orderId) {
+        String adminId = getUserId(token);
+        if (adminId == null) return new Result().againLogin("请登录");
+        return orderService.deleteByShop(adminId, orderId);
+    }
 }

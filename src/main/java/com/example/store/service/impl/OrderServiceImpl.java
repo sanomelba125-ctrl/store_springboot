@@ -1,6 +1,7 @@
 package com.example.store.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.store.dto.OrderSubmitDTO;
@@ -34,6 +35,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private UserAddressMapper addressMapper;
     @Autowired
     private OrderItemMapper orderItemMapper;
+    @Autowired
+    private ShopMapper shopMapper;
     @Autowired
     private UrlHelper urlHelper;
 
@@ -73,7 +76,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return new Result().fail("请选择要购买的商品");
         }
 
-        // 3. 【核心修改：拆单逻辑】 遍历结算项，为每种商品单独生成一个订单
+        // 3. 遍历结算项，为每种商品单独生成一个订单
         for (int i = 0; i < settleItems.size(); i++) {
             Shopcart item = settleItems.get(i);
             Goods goods = goodsMapper.selectById(item.getGoodsId());
@@ -85,10 +88,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 throw new RuntimeException("商品 [" + goods.getName() + "] 库存不足");
             }
 
-            // 扣减库存
-            goods.setInventory(goods.getInventory() - item.getNumber());
-            goodsMapper.updateById(goods);
+            // 使用数据库层面的乐观锁扣减库存
+            // 相当于执行 SQL: UPDATE goods SET inventory = inventory - #{number} WHERE id = #{goodsId} AND inventory >= #{number}
+            UpdateWrapper<Goods> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.setSql("inventory = inventory - " + item.getNumber())
+                        .eq("id", goods.getId())
+                        .ge("inventory", item.getNumber()); // 核心条件：当前数据库中的真实库存必须 >= 购买数量
 
+            int updateRows = goodsMapper.update(null, updateWrapper);
+
+            // 如果更新行数为 0，说明库存不足或已经被其他线程抢光了
+            if (updateRows == 0) {
+                throw new RuntimeException("商品 [" + goods.getName() + "] 被抢光啦，库存不足！");
+            }
             // ================= 生成独立的订单主表数据 =================
             Order order = new Order();
             // 订单号生成：时间戳 + 随机数 + 循环索引i (防止同一毫秒内并发处理导致订单号重复)
@@ -371,5 +383,57 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         this.updateById(order);
         return new Result().success("退款申请已提交，请等待商家审核");
+    }
+
+    @Override
+    public Result deleteByUser(String userId, String orderId) {
+        Order order = this.getById(orderId);
+        if (order == null || !order.getUserId().equals(userId)) {
+            return new Result().fail("订单不存在");
+        }
+        // 只允许删除已完结的订单：已取消(-1)、已收货(3)、退单成功(-3)、强制退单(-4)
+        int status = order.getStatus();
+        if (status != -1 && status != 3 && status != -3 && status != -4) {
+            return new Result().fail("当前订单状态不允许删除，请先完结订单");
+        }
+        // 同步删除订单项
+        orderItemMapper.delete(new QueryWrapper<OrderItem>().eq("order_id", orderId));
+        this.removeById(orderId);
+        return new Result().success("删除成功");
+    }
+
+    @Override
+    public Result deleteByShop(String adminId, String orderId) {
+        // 校验该订单是否属于该商家的店铺
+        Order order = this.getById(orderId);
+        if (order == null) {
+            return new Result().fail("订单不存在");
+        }
+        // 通过 order_item -> goods -> shop 验证归属
+        List<OrderItem> items = orderItemMapper.selectList(
+                new QueryWrapper<OrderItem>().eq("order_id", orderId));
+        if (items.isEmpty()) {
+            return new Result().fail("订单数据异常");
+        }
+        Goods goods = goodsMapper.selectById(items.get(0).getGoodsId());
+        if (goods == null) {
+            return new Result().fail("商品数据异常");
+        }
+        // 查询该商品所属店铺是否归该管理员
+        QueryWrapper<com.example.store.entity.Shop> shopWrapper = new QueryWrapper<>();
+        shopWrapper.eq("id", goods.getShopId()).eq("user_id", adminId);
+        // 使用 ShopMapper 验证归属
+        long count = shopMapper.selectCount(shopWrapper);
+        if (count == 0) {
+            return new Result().fail("无权操作该订单");
+        }
+        // 只允许删除已完结的订单
+        int status = order.getStatus();
+        if (status != -1 && status != 3 && status != -3 && status != -4) {
+            return new Result().fail("当前订单状态不允许删除，请先完结订单");
+        }
+        orderItemMapper.delete(new QueryWrapper<OrderItem>().eq("order_id", orderId));
+        this.removeById(orderId);
+        return new Result().success("删除成功");
     }
 }

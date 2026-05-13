@@ -41,4 +41,10 @@ public interface OrderService extends IService<Order> {
 
     //用户申请退款
     Result applyRefund(String userId, String orderId, String reason);
+
+    // 用户删除订单（仅限已完结/已取消/已退款状态）
+    Result deleteByUser(String userId, String orderId);
+
+    // 商家删除订单（仅限自己店铺的订单，且已完结/已取消/已退款状态）
+    Result deleteByShop(String adminId, String orderId);
 }
