@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.store.config.RabbitMQConfig;
 import com.example.store.dto.OrderSubmitDTO;
 import com.example.store.dto.OrderAuditDTO;
 import com.example.store.entity.*;
@@ -14,13 +15,17 @@ import com.example.store.utils.Result;
 import com.example.store.utils.UrlHelper;
 import com.example.store.vo.OrderItemVO;
 import com.example.store.vo.OrderVO;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -39,6 +44,31 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private ShopMapper shopMapper;
     @Autowired
     private UrlHelper urlHelper;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+    /**
+     * Redis 原子扣减库存 Lua 脚本
+     * 参数：KEYS[1]=stockKey, ARGV[1]=扣减数量
+     * 返回：
+     *   -1 → key 不存在（Redis 中无该商品库存缓存）
+     *    0 → 库存不足
+     *    1 → 扣减成功
+     */
+    private static final DefaultRedisScript<Long> STOCK_DEDUCT_SCRIPT;
+    static {
+        STOCK_DEDUCT_SCRIPT = new DefaultRedisScript<>();
+        STOCK_DEDUCT_SCRIPT.setResultType(Long.class);
+        STOCK_DEDUCT_SCRIPT.setScriptText(
+            "local stock = redis.call('get', KEYS[1]) " +
+            "if stock == false then return -1 end " +
+            "if tonumber(stock) < tonumber(ARGV[1]) then return 0 end " +
+            "redis.call('decrby', KEYS[1], ARGV[1]) " +
+            "return 1"
+        );
+    }
 
     @Value("${server.port}")
     private String port;
@@ -77,56 +107,98 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         }
 
         // 3. 遍历结算项，为每种商品单独生成一个订单
-        for (int i = 0; i < settleItems.size(); i++) {
-            Shopcart item = settleItems.get(i);
-            Goods goods = goodsMapper.selectById(item.getGoodsId());
+        String firstOrderId = null;
+        // 记录在 Redis 中预扣减成功的商品，用于异常时回滚
+        List<Shopcart> redisSuccessItems = new ArrayList<>();
 
-            if (goods == null || goods.getStatus() == 0) {
-                throw new RuntimeException("商品 [" + item.getGoodsId() + "] 已下架或不存在");
+        try {
+            for (int i = 0; i < settleItems.size(); i++) {
+                Shopcart item = settleItems.get(i);
+                Goods goods = goodsMapper.selectById(item.getGoodsId());
+
+                if (goods == null || goods.getStatus() == 0) {
+                    throw new RuntimeException("商品 [" + item.getGoodsId() + "] 已下架或不存在");
+                }
+
+                // ===== Redis 预扣减库存（Lua 脚本原子操作）=====
+                String stockKey = "goods:stock:" + goods.getId();
+                Long result = redisTemplate.execute(
+                        STOCK_DEDUCT_SCRIPT,
+                        Collections.singletonList(stockKey),
+                        String.valueOf(item.getNumber())
+                );
+
+                if (result == null) {
+                    throw new RuntimeException("商品 [" + goods.getName() + "] 库存服务异常，请稍后重试");
+                }
+                if (result == -1L) {
+                    // Redis 中无缓存，降级到 MySQL 直接扣减（乐观锁）
+                    UpdateWrapper<Goods> updateWrapper = new UpdateWrapper<>();
+                    updateWrapper.setSql("inventory = inventory - " + item.getNumber())
+                            .eq("id", goods.getId())
+                            .ge("inventory", item.getNumber());
+                    int updateRows = goodsMapper.update(null, updateWrapper);
+                    if (updateRows == 0) {
+                        throw new RuntimeException("商品 [" + goods.getName() + "] 库存不足！");
+                    }
+                    // 降级扣减成功，也记录到 redisSuccessItems（number 标记为负数表示走了 MySQL，回滚时跳过 Redis）
+                    // 此处直接跳过 Redis 回滚记录，MySQL 回滚由 @Transactional 保证
+                } else if (result == 0L) {
+                    throw new RuntimeException("商品 [" + goods.getName() + "] 库存不足！");
+                } else {
+                    // Redis 预扣减成功，记录以备回滚
+                    redisSuccessItems.add(item);
+                }
+
+                // ================= 生成独立的订单主表数据 =================
+                Order order = new Order();
+                String orderNo = System.currentTimeMillis() + "" + new Random().nextInt(100) + i;
+                order.setNo(orderNo);
+                order.setUserId(userId);
+                order.setReceiverName(address.getReceiverName());
+                order.setReceiverMobile(address.getReceiverMobile());
+                order.setReceiverAddress(address.getDetail());
+                order.setStatus(0); // 待支付
+                order.setCreateTime(DateUtil.getCurrentTime());
+                order.setTotalPrice(goods.getPrice() * item.getNumber());
+
+                this.save(order);
+                if (firstOrderId == null) firstOrderId = order.getId();
+
+                // ================= 生成对应的订单项数据 =================
+                OrderItem orderItem = new OrderItem();
+                orderItem.setGoodsId(goods.getId());
+                orderItem.setNumber(item.getNumber());
+                orderItem.setUnitPrice(goods.getPrice());
+                orderItem.setOrderId(order.getId());
+                orderItemMapper.insert(orderItem);
+
+                // 发送延迟消息到普通交换机，TTL 到期后自动流转到死信队列触发超时取消
+                rabbitTemplate.convertAndSend(
+                        RabbitMQConfig.NORMAL_EXCHANGE,
+                        RabbitMQConfig.NORMAL_ROUTING_KEY,
+                        order.getId()
+                );
             }
-            if (goods.getInventory() < item.getNumber()) {
-                throw new RuntimeException("商品 [" + goods.getName() + "] 库存不足");
+
+            // 数据库操作全部成功后，通过 MQ 异步将 Redis 预扣减同步到 MySQL
+            for (Shopcart item : redisSuccessItems) {
+                String msg = item.getGoodsId() + ":" + item.getNumber();
+                rabbitTemplate.convertAndSend(
+                        RabbitMQConfig.STOCK_SYNC_EXCHANGE,
+                        RabbitMQConfig.STOCK_SYNC_ROUTING_KEY,
+                        msg
+                );
             }
 
-            // 使用数据库层面的乐观锁扣减库存
-            // 相当于执行 SQL: UPDATE goods SET inventory = inventory - #{number} WHERE id = #{goodsId} AND inventory >= #{number}
-            UpdateWrapper<Goods> updateWrapper = new UpdateWrapper<>();
-            updateWrapper.setSql("inventory = inventory - " + item.getNumber())
-                        .eq("id", goods.getId())
-                        .ge("inventory", item.getNumber()); // 核心条件：当前数据库中的真实库存必须 >= 购买数量
-
-            int updateRows = goodsMapper.update(null, updateWrapper);
-
-            // 如果更新行数为 0，说明库存不足或已经被其他线程抢光了
-            if (updateRows == 0) {
-                throw new RuntimeException("商品 [" + goods.getName() + "] 被抢光啦，库存不足！");
+        } catch (Exception e) {
+            // Redis 回滚：将预扣减成功的库存加回去
+            for (Shopcart item : redisSuccessItems) {
+                String stockKey = "goods:stock:" + item.getGoodsId();
+                redisTemplate.opsForValue().increment(stockKey, item.getNumber());
             }
-            // ================= 生成独立的订单主表数据 =================
-            Order order = new Order();
-            // 订单号生成：时间戳 + 随机数 + 循环索引i (防止同一毫秒内并发处理导致订单号重复)
-            String orderNo = System.currentTimeMillis() + "" + new Random().nextInt(100) + i;
-            order.setNo(orderNo);
-            order.setUserId(userId);
-            order.setReceiverName(address.getReceiverName());
-            order.setReceiverMobile(address.getReceiverMobile());
-            order.setReceiverAddress(address.getDetail());
-            order.setStatus(0); // 待支付
-            order.setCreateTime(DateUtil.getCurrentTime());
-            // 该订单的总价就是这单个商品的总价
-            order.setTotalPrice(goods.getPrice() * item.getNumber());
-
-            // 保存订单主表，获取生成的 orderId
-            this.save(order);
-
-            // ================= 生成对应的订单项数据 =================
-            OrderItem orderItem = new OrderItem();
-            orderItem.setGoodsId(goods.getId());
-            orderItem.setNumber(item.getNumber());
-            orderItem.setUnitPrice(goods.getPrice());
-            orderItem.setOrderId(order.getId());
-
-            // 保存订单明细
-            orderItemMapper.insert(orderItem);
+            // 抛出异常触发 @Transactional 数据库回滚
+            throw new RuntimeException(e.getMessage());
         }
 
         // 4. 如果是购物车结算，清空对应的购物车记录
@@ -134,9 +206,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             shopcartMapper.deleteBatchIds(submitDTO.getCartIds());
         }
 
-        // 由于现在可能生成了多个订单，原先的 setData(order.getId()) 就不适用了
-        // 前端 OrderConfirm.vue 也并没有用到这个返回的 ID，所以直接返回成功提示即可
-        return new Result().success("下单成功");
+        // 返回第一个订单的 ID，供前端直接跳转到详情页/支付页
+        return new Result().success("下单成功").setData(firstOrderId);
     }
 
     @Override
