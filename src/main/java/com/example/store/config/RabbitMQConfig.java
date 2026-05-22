@@ -33,8 +33,8 @@ public class RabbitMQConfig {
     public static final String NORMAL_QUEUE       = "order.normal.queue";
     public static final String NORMAL_ROUTING_KEY = "order.normal.routing.key";
 
-    /** 消息 TTL：30 秒（测试用），生产环境改为 30 * 60 * 1000 = 1800000 */
-    private static final int MESSAGE_TTL_MS = 1800000_000;
+    /** 消息 TTL：30 分钟 = 1800000 ms，测试时可改为 30000（30秒） */
+    private static final int MESSAGE_TTL_MS = 1_800_000;
 
     // ==================== 死信 Exchange & Queue ====================
 
