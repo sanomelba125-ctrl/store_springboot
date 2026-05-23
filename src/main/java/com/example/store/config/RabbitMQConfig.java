@@ -23,6 +23,11 @@ public class RabbitMQConfig {
     public static final String STOCK_SYNC_QUEUE       = "stock.sync.queue";
     public static final String STOCK_SYNC_ROUTING_KEY = "stock.sync.routing.key";
 
+    // ==================== ES 商品同步队列常量 ====================
+    public static final String ES_GOODS_SYNC_EXCHANGE    = "es.goods.sync.exchange";
+    public static final String ES_GOODS_SYNC_QUEUE       = "es.goods.sync.queue";
+    public static final String ES_GOODS_SYNC_ROUTING_KEY = "es.goods.sync.routing.key";
+
     // ==================== 死信（DLX）常量 ====================
     public static final String DEAD_LETTER_EXCHANGE   = "order.dlx.exchange";
     public static final String DEAD_LETTER_QUEUE      = "order.dlx.queue";
@@ -105,5 +110,25 @@ public class RabbitMQConfig {
                 .bind(stockSyncQueue())
                 .to(stockSyncExchange())
                 .with(STOCK_SYNC_ROUTING_KEY);
+    }
+
+    // ==================== ES 商品同步 Exchange & Queue ====================
+
+    @Bean
+    public DirectExchange esGoodsSyncExchange() {
+        return new DirectExchange(ES_GOODS_SYNC_EXCHANGE, true, false);
+    }
+
+    @Bean
+    public Queue esGoodsSyncQueue() {
+        return QueueBuilder.durable(ES_GOODS_SYNC_QUEUE).build();
+    }
+
+    @Bean
+    public Binding esGoodsSyncBinding() {
+        return BindingBuilder
+                .bind(esGoodsSyncQueue())
+                .to(esGoodsSyncExchange())
+                .with(ES_GOODS_SYNC_ROUTING_KEY);
     }
 }

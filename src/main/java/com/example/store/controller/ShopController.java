@@ -1,7 +1,5 @@
 package com.example.store.controller;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
 import com.example.store.dto.ShopDTO;
 import com.example.store.entity.Shop;
 import com.example.store.service.ShopService;
@@ -11,7 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +22,14 @@ public class ShopController {
 
     @Autowired
     private ShopService shopService;
-    @Autowired
-    private StringRedisTemplate redisTemplate;
 
-    private String getUserId(String token) {
-        if (!StringUtils.hasText(token)) return null;
-        String userJson = redisTemplate.opsForValue().get("login_token:" + token);
-        if (!StringUtils.hasText(userJson)) return null;
-        return JSON.parseObject(userJson).getString("id");
+    /**
+     * 从 Spring Security 上下文获取当前登录用户的 ID
+     * JwtAuthenticationFilter 在过滤阶段已将 userId 写入 SecurityContext。
+     */
+    private String getCurrentUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return (principal instanceof String) ? (String) principal : null;
     }
 
     @Operation(summary = "获取店铺详情")
@@ -49,24 +47,21 @@ public class ShopController {
         return shopService.pageList(pageNum, pageSize, name);
     }
 
-    //信息管理员专用
+    // 信息管理员专用
 
     @Operation(summary = "我的店铺列表")
     @GetMapping("/my")
-    public Result myShops(@RequestHeader("token") String token,
-                          @RequestParam(defaultValue = "1") int pageNum,
+    public Result myShops(@RequestParam(defaultValue = "1") int pageNum,
                           @RequestParam(defaultValue = "10") int pageSize,
-                          @RequestParam(required = false) String name) { // 【新增参数】
-        String userId = getUserId(token);
+                          @RequestParam(required = false) String name) {
+        String userId = getCurrentUserId();
         if (userId == null) return new Result().againLogin("请登录");
-
-        //调用分页方法
         return shopService.getMyShopsPage(userId, pageNum, pageSize, name);
     }
 
     @PostMapping("/save")
-    public Result save(@RequestHeader("token") String token, @RequestBody ShopDTO shopDTO) {
-        String userId = getUserId(token);
+    public Result save(@RequestBody ShopDTO shopDTO) {
+        String userId = getCurrentUserId();
         if (userId == null) return new Result().againLogin("请登录");
 
         Shop shop = new Shop();
@@ -78,9 +73,9 @@ public class ShopController {
             shop.setCreateTime(DateUtil.getCurrentTime());
             shopService.save(shop);
         } else {
-            // 需要校验该店铺是否属于当前用户
+            // 校验该店铺是否属于当前用户
             Shop oldShop = shopService.getById(shop.getId());
-            if(oldShop == null || !oldShop.getUserId().equals(userId)){
+            if (oldShop == null || !oldShop.getUserId().equals(userId)) {
                 return new Result().fail("非法操作");
             }
             shopService.updateById(shop);

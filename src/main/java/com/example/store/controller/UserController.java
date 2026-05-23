@@ -5,12 +5,14 @@ import cn.hutool.captcha.LineCaptcha;
 import com.example.store.dto.LoginDTO;
 import com.example.store.dto.RegisterDTO;
 import com.example.store.entity.User;
+import com.example.store.security.JwtAuthenticationFilter;
 import com.example.store.service.UserService;
+import com.example.store.utils.JwtUtil;
 import com.example.store.utils.Result;
 import com.example.store.service.ShopcartService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.store.entity.Shopcart;
-import io.swagger.v3.oas.annotations.Operation; // 对应 SpringDoc/Swagger3
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -34,7 +36,10 @@ public class UserController {
     private ShopcartService shopcartService;
 
     @Autowired
-    private StringRedisTemplate redisTemplate; // 引入 Redis 用于退出登录
+    private StringRedisTemplate redisTemplate;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Operation(summary = "用户登录")
     @PostMapping("/login")
@@ -134,9 +139,18 @@ public class UserController {
     @Operation(summary = "退出登录")
     @PostMapping("/logout")
     public Result logout(@RequestHeader("token") String token) {
-        // 从 Redis 中删除 Token
-        String keyToken = "login_token:" + token;
-        redisTemplate.delete(keyToken);
+        try {
+            // 将该 JWT 的 jti 加入黑名单，剩余有效期内不可再用
+            String jti = jwtUtil.getJti(token);
+            long remainingMs = jwtUtil.getRemainingExpiration(token);
+            if (remainingMs > 0) {
+                redisTemplate.opsForValue().set(
+                        JwtAuthenticationFilter.BLACKLIST_PREFIX + jti,
+                        "1", remainingMs, TimeUnit.MILLISECONDS);
+            }
+        } catch (Exception ignored) {
+            // token 已过期或无效，无需处理
+        }
         return new Result().success("已退出登录");
     }
 }

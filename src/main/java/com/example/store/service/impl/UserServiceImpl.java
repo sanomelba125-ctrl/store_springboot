@@ -1,6 +1,5 @@
 package com.example.store.service.impl;
 
-import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,10 +8,12 @@ import com.example.store.dto.RegisterDTO;
 import com.example.store.dto.UserPageDTO;
 import com.example.store.entity.User;
 import com.example.store.mapper.UserMapper;
+import com.example.store.security.JwtAuthenticationFilter;
 import com.example.store.service.UserService;
 import com.example.store.entity.Shopcart;
 import com.example.store.mapper.ShopcartMapper;
 import com.example.store.utils.DateUtil;
+import com.example.store.utils.JwtUtil;
 import com.example.store.utils.MD5Util;
 import com.example.store.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.List;
 
@@ -33,10 +33,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private StringRedisTemplate redisTemplate;
     @Autowired
     private ShopcartMapper shopcartMapper;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     // Redis Key 前缀定义
-    private static final String KEY_TOKEN_PREFIX = "login_token:";      // token -> userJson
-    private static final String KEY_USER_PREFIX = "login_user_token:";  // userId -> token
+    private static final String KEY_USER_CURRENT_JTI = "user:current:jti:"; // userId -> 当前 jti（互踢用）
     private static final long EXPIRE_TIME = 30;
 
 
@@ -88,42 +89,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return new Result().fail("密码错误");
         }
 
-        //互踢逻辑
+        //互踢逻辑：将旧 JWT 的 jti 加入黑名单
         String userId = user.getId();
-        String userKey = KEY_USER_PREFIX + userId;
-
-        // 检查是否有旧 Token
-        String oldToken = redisTemplate.opsForValue().get(userKey);
-        if (StringUtils.hasText(oldToken)) {
-            // 删除旧 Token 的登录凭证
-            redisTemplate.delete(KEY_TOKEN_PREFIX + oldToken);
+        String userJtiKey = KEY_USER_CURRENT_JTI + userId;
+        String oldJti = redisTemplate.opsForValue().get(userJtiKey);
+        if (StringUtils.hasText(oldJti)) {
+            // 旧 token 加入黑名单，TTL 设为 JWT 过期时间（保守处理）
+            redisTemplate.opsForValue().set(
+                    JwtAuthenticationFilter.BLACKLIST_PREFIX + oldJti,
+                    "1", EXPIRE_TIME, TimeUnit.MINUTES);
         }
 
         // 用 etc 填充购物车数量
         QueryWrapper<Shopcart> cartWrapper = new QueryWrapper<>();
         cartWrapper.eq("user_id", user.getId());
         List<Shopcart> cartList = shopcartMapper.selectList(cartWrapper);
-        // 计算商品总数量
         int totalCount = cartList.stream().mapToInt(Shopcart::getNumber).sum();
-
-        // 将数量放入 etc 字段
         user.getEtc().put("cartCount", totalCount);
 
-        // 生成新 Token
-        String newToken = UUID.randomUUID().toString().replace("-", "");
+        // 生成 JWT
+        String jwt = jwtUtil.generateToken(user.getId(), user.getType());
+        String newJti = jwtUtil.getJti(jwt);
 
-        // 存入新 Token
+        // 记录当前用户的 jti（用于下次登录时互踢）
+        redisTemplate.opsForValue().set(userJtiKey, newJti, EXPIRE_TIME, TimeUnit.MINUTES);
+
+        // 脱敏后返回
         user.setPassword(null);
         user.setSalt(null);
-        String userJson = JSON.toJSONString(user);
 
-        redisTemplate.opsForValue().set(KEY_TOKEN_PREFIX + newToken, userJson, EXPIRE_TIME, TimeUnit.MINUTES);
-        redisTemplate.opsForValue().set(userKey, newToken, EXPIRE_TIME, TimeUnit.MINUTES);
-
-        // 返回数据
         Map<String, Object> map = new HashMap<>();
-        map.put("token", newToken);
-        map.put("user", user); // 返回用户信息，前端可用于判断角色跳转
+        map.put("token", jwt);
+        map.put("user", user);
 
         return new Result().success("登录成功").setData(map);
     }
@@ -263,13 +260,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUseful(useful);
         boolean success = this.updateById(user);
 
-        // 如果禁用，尝试清除缓存 Token (简单的踢下线处理)
+        // 如果禁用，将该用户当前 JWT 的 jti 加入黑名单，立即踢下线
         if (success && useful == 0) {
-            String userKey = KEY_USER_PREFIX + id;
-            String token = redisTemplate.opsForValue().get(userKey);
-            if (StringUtils.hasText(token)) {
-                redisTemplate.delete(KEY_TOKEN_PREFIX + token);
-                redisTemplate.delete(userKey);
+            String userJtiKey = KEY_USER_CURRENT_JTI + id;
+            String currentJti = redisTemplate.opsForValue().get(userJtiKey);
+            if (StringUtils.hasText(currentJti)) {
+                redisTemplate.opsForValue().set(
+                        JwtAuthenticationFilter.BLACKLIST_PREFIX + currentJti,
+                        "1", EXPIRE_TIME, TimeUnit.MINUTES);
+                redisTemplate.delete(userJtiKey);
             }
         }
 
@@ -298,16 +297,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return new Result().fail("用户不存在");
         }
 
-        // 执行删除
         boolean success = this.removeById(id);
 
-        // 清理 Redis 缓存
+        // 将该用户当前 JWT 的 jti 加入黑名单
         if (success) {
-            String userKey = KEY_USER_PREFIX + id;
-            String token = redisTemplate.opsForValue().get(userKey);
-            if (StringUtils.hasText(token)) {
-                redisTemplate.delete(KEY_TOKEN_PREFIX + token);
-                redisTemplate.delete(userKey);
+            String userJtiKey = KEY_USER_CURRENT_JTI + id;
+            String currentJti = redisTemplate.opsForValue().get(userJtiKey);
+            if (StringUtils.hasText(currentJti)) {
+                redisTemplate.opsForValue().set(
+                        JwtAuthenticationFilter.BLACKLIST_PREFIX + currentJti,
+                        "1", EXPIRE_TIME, TimeUnit.MINUTES);
+                redisTemplate.delete(userJtiKey);
             }
         }
 

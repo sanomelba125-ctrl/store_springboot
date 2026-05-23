@@ -1,18 +1,26 @@
 package com.example.store.controller;
 
-import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.example.store.config.RabbitMQConfig;
+import com.example.store.document.GoodsDoc;
 import com.example.store.dto.GoodsDTO;
 import com.example.store.entity.Goods;
+import com.example.store.listener.EsSyncListener;
+import com.example.store.repository.GoodsDocRepository;
 import com.example.store.service.GoodsService;
 import com.example.store.utils.DateUtil;
 import com.example.store.utils.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Tag(name = "商品管理")
 @RestController
@@ -22,13 +30,30 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private GoodsDocRepository goodsDocRepository;
+
     // 从 Token 获取 UserId
-    private String getUserId(String token) {
-        if (!StringUtils.hasText(token)) return null;
-        String userJson = redisTemplate.opsForValue().get("login_token:" + token);
-        if (!StringUtils.hasText(userJson)) return null;
-        return JSON.parseObject(userJson).getString("id");
+   // 直接从 Security 上下文中拿，不需要再查 Redis
+    private String getUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof String) {
+            return (String) principal;
+        }
+        return null;
+    }
+
+    /** 向 ES 同步队列发送消息 */
+    private void sendEsSyncMsg(String action, String goodsId) {
+        JSONObject msg = new JSONObject();
+        msg.put("action", action);
+        msg.put("goodsId", goodsId);
+        rabbitTemplate.convertAndSend(
+                RabbitMQConfig.ES_GOODS_SYNC_EXCHANGE,
+                RabbitMQConfig.ES_GOODS_SYNC_ROUTING_KEY,
+                msg.toJSONString()
+        );
     }
 
     @Operation(summary = "首页商品列表/搜索")
@@ -53,37 +78,38 @@ public class GoodsController {
         return goodsService.getDetail(id);
     }
 
-    //信息管理员专用接口
+    // 信息管理员专用接口
 
     @Operation(summary = "获取我的商品列表")
     @GetMapping("/my")
-    public Result myGoods(@RequestHeader("token") String token,
-                          @RequestParam(defaultValue = "1") int pageNum,
+    public Result myGoods(@RequestParam(defaultValue = "1") int pageNum,
                           @RequestParam(defaultValue = "10") int pageSize,
                           @RequestParam(required = false) String name,
                           @RequestParam(required = false) String shopId) {
-        String userId = getUserId(token);
+        String userId = getUserId();
         if (userId == null) return new Result().againLogin("登录已过期");
-
         return goodsService.getMyGoodsPage(pageNum, pageSize, name, userId, shopId);
     }
 
+    @Operation(summary = "新增/更新商品")
     @PostMapping("/save")
     public Result save(@RequestBody GoodsDTO goodsDTO) {
         Goods goods = new Goods();
-        // 把前端传过来的JSON对象转为实体对象
         BeanUtils.copyProperties(goodsDTO, goods);
 
         if (!StringUtils.hasText(goods.getName())) return new Result().fail("名称不能为空");
 
-        // 如果 ID 为空，说明是新增
         if (!StringUtils.hasText(goods.getId())) {
             goods.setCreateTime(DateUtil.getCurrentTime());
-            goods.setStatus(1); // 默认上架
+            goods.setStatus(1);
             goodsService.save(goods);
         } else {
             goodsService.updateById(goods);
         }
+
+        // 通知 ES 同步（异步，不阻塞主流程）
+        sendEsSyncMsg("upsert", goods.getId());
+
         return new Result().success("保存成功");
     }
 
@@ -91,6 +117,8 @@ public class GoodsController {
     @PostMapping("/delete")
     public Result delete(@RequestParam String id) {
         goodsService.removeById(id);
+        // 通知 ES 删除文档
+        sendEsSyncMsg("delete", id);
         return new Result().success("删除成功");
     }
 
@@ -101,6 +129,20 @@ public class GoodsController {
         goods.setId(id);
         goods.setStatus(status);
         goodsService.updateById(goods);
+        // 状态变更同步 ES（下架时 status=0，ES 搜索会过滤掉）
+        sendEsSyncMsg("upsert", id);
         return new Result().success("操作成功");
+    }
+
+    @Operation(summary = "全量同步商品数据到 ES（一次性初始化）")
+    @PostMapping("/syncToEs")
+    public Result syncToEs() {
+        List<Goods> goodsList = goodsService.list();
+        List<GoodsDoc> docs = new ArrayList<>();
+        for (Goods goods : goodsList) {
+            docs.add(EsSyncListener.toDoc(goods));
+        }
+        goodsDocRepository.saveAll(docs);
+        return new Result().success().setData("全量同步 ES 成功，共导入 " + docs.size() + " 条数据");
     }
 }

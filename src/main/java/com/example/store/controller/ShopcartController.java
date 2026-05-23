@@ -1,15 +1,12 @@
 package com.example.store.controller;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
 import com.example.store.entity.Shopcart;
 import com.example.store.service.ShopcartService;
 import com.example.store.utils.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.util.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "购物车管理")
@@ -20,37 +17,28 @@ public class ShopcartController {
     @Autowired
     private ShopcartService shopcartService;
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
-
     /**
-     * 辅助方法：从 Token 中获取 UserId
+     * 从 Spring Security 上下文获取当前登录用户的 ID
+     * JwtAuthenticationFilter 在过滤阶段已将 userId 写入 SecurityContext。
      */
-    private String getUserId(String token) {
-        if (!StringUtils.hasText(token)) return null;
-        String userJson = redisTemplate.opsForValue().get("login_token:" + token);
-        if (!StringUtils.hasText(userJson)) return null;
-        JSONObject jsonObject = JSON.parseObject(userJson);
-        return jsonObject.getString("id");
+    private String getCurrentUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return (principal instanceof String) ? (String) principal : null;
     }
 
     @Operation(summary = "加入购物车")
     @PostMapping("/add")
-    public Result add(@RequestHeader("token") String token,
-                      @RequestBody Shopcart params) { // 前端传 goodsId 和 number
-        String userId = getUserId(token);
+    public Result add(@RequestBody Shopcart params) {
+        String userId = getCurrentUserId();
         if (userId == null) return new Result().againLogin("请先登录");
-
         return shopcartService.addCart(userId, params.getGoodsId(), params.getNumber());
     }
 
     @Operation(summary = "我的购物车列表")
     @GetMapping("/list")
-    public Result list(@RequestHeader("token") String token,
-                       @RequestParam(required = false) String keyword) {
-        String userId = getUserId(token);
+    public Result list(@RequestParam(required = false) String keyword) {
+        String userId = getCurrentUserId();
         if (userId == null) return new Result().againLogin("请先登录");
-
         return shopcartService.getMyCart(userId, keyword);
     }
 
