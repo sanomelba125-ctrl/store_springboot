@@ -94,6 +94,7 @@ public class OrderController {
     @PostMapping("/delivery")
     public Result delivery(@RequestParam String orderId) {
         String adminId = getCurrentUserId();
+        if (adminId == null) return new Result().againLogin("请先登录");
         return orderService.deliveryOrder(adminId, orderId);
     }
 
@@ -101,6 +102,7 @@ public class OrderController {
     @PostMapping("/audit/refund")
     public Result auditRefund(@RequestBody OrderAuditDTO auditDTO) {
         String adminId = getCurrentUserId();
+        if (adminId == null) return new Result().againLogin("请先登录");
         return orderService.auditRefund(adminId, auditDTO);
     }
 
@@ -109,6 +111,7 @@ public class OrderController {
     public Result forceRefund(@RequestParam String orderId,
                               @RequestParam String reason) {
         String adminId = getCurrentUserId();
+        if (adminId == null) return new Result().againLogin("请先登录");
         return orderService.forceRefund(adminId, orderId, reason);
     }
 
@@ -117,6 +120,7 @@ public class OrderController {
     public Result applyRefund(@RequestParam String orderId,
                               @RequestParam String reason) {
         String userId = getCurrentUserId();
+        if (userId == null) return new Result().againLogin("请先登录");
         return orderService.applyRefund(userId, orderId, reason);
     }
 

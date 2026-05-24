@@ -86,6 +86,13 @@ public class ShopController {
     @Operation(summary = "删除店铺")
     @PostMapping("/delete")
     public Result delete(@RequestParam String id) {
+        String userId = getCurrentUserId();
+        if (userId == null) return new Result().againLogin("请登录");
+        
+        Shop oldShop = shopService.getById(id);
+        if (oldShop == null || !oldShop.getUserId().equals(userId)) {
+            return new Result().fail("非法操作：无权删除该店铺");
+        }
         return shopService.deleteShop(id);
     }
 }

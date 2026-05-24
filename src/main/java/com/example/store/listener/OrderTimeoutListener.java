@@ -11,6 +11,7 @@ import com.example.store.mapper.OrderMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * 订单超时自动取消监听器
  * 监听死信队列，当普通队列中的消息 TTL 到期后，消息流转到此队列
- * 检查订单状态，若仍为待支付（0），则自动取消并回退库存
+ * 检查订单状态，若仍为待支付（0），则自动取消并回退库存（MySQL + Redis 同步）
  */
 @Slf4j
 @Component
@@ -33,6 +34,9 @@ public class OrderTimeoutListener {
 
     @Autowired
     private GoodsMapper goodsMapper;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @RabbitListener(queues = RabbitMQConfig.DEAD_LETTER_QUEUE)
     @Transactional(rollbackFor = Exception.class)
@@ -58,7 +62,7 @@ public class OrderTimeoutListener {
         orderMapper.updateById(order);
         log.info("[订单超时] 订单已自动取消，orderId={}", orderId);
 
-        // 4. 回退库存：查出订单明细，逐条将购买数量加回商品库存
+        // 4. 回退库存：查出订单明细，逐条将购买数量加回 MySQL 和 Redis
         List<OrderItem> items = orderItemMapper.selectList(
                 new QueryWrapper<OrderItem>().eq("order_id", orderId)
         );
@@ -66,9 +70,17 @@ public class OrderTimeoutListener {
         for (OrderItem item : items) {
             Goods goods = goodsMapper.selectById(item.getGoodsId());
             if (goods != null) {
+                // 回退 MySQL 库存
                 goods.setInventory(goods.getInventory() + item.getNumber());
                 goodsMapper.updateById(goods);
-                log.info("[订单超时] 库存回退，goodsId={}，回退数量={}", item.getGoodsId(), item.getNumber());
+                log.info("[订单超时] MySQL 库存回退，goodsId={}，回退数量={}", item.getGoodsId(), item.getNumber());
+
+                // 回退 Redis 库存（若 key 存在说明下单时走了 Redis 预扣减路径，需同步加回）
+                String stockKey = "goods:stock:" + item.getGoodsId();
+                if (Boolean.TRUE.equals(redisTemplate.hasKey(stockKey))) {
+                    redisTemplate.opsForValue().increment(stockKey, item.getNumber());
+                    log.info("[订单超时] Redis 库存回退，key={}，回退数量={}", stockKey, item.getNumber());
+                }
             }
         }
     }

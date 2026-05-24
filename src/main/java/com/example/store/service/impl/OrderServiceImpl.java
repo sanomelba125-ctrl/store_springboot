@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
@@ -152,7 +152,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
                 // ================= 生成独立的订单主表数据 =================
                 Order order = new Order();
-                String orderNo = System.currentTimeMillis() + "" + new Random().nextInt(100) + i;
+                // 使用 UUID 生成全局唯一订单号，彻底避免高并发下的重复风险
+                String orderNo = "ORD" + UUID.randomUUID().toString().replace("-", "").toUpperCase();
                 order.setNo(orderNo);
                 order.setUserId(userId);
                 order.setReceiverName(address.getReceiverName());
@@ -246,9 +247,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         for (OrderItem item : items) {
             Goods goods = goodsMapper.selectById(item.getGoodsId());
             if (goods != null) {
-                // 原库存 + 订单里的数量
+                // 回退 MySQL 库存
                 goods.setInventory(goods.getInventory() + item.getNumber());
                 goodsMapper.updateById(goods);
+
+                // 回退 Redis 库存（若 key 存在说明下单时走了 Redis 预扣减路径，需同步加回）
+                String stockKey = "goods:stock:" + item.getGoodsId();
+                if (Boolean.TRUE.equals(redisTemplate.hasKey(stockKey))) {
+                    redisTemplate.opsForValue().increment(stockKey, item.getNumber());
+                }
             }
         }
 
@@ -404,7 +411,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             }
         } else {
             // --- 审核驳回 ---
-            order.setStatus(3);
+            // 使用专用状态 -5（退款驳回），不能设为 3（已收货），否则语义完全错误
+            order.setStatus(-5);
             order.setRefundAdmin("审核驳回：" + auditDTO.getReason());
         }
 
@@ -444,8 +452,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return new Result().fail("订单不存在");
         }
 
-        // 只有已发货2和已收货3的订单可以申请退款
-        if (order.getStatus() != 2 && order.getStatus() != 3) {
+        // 已发货(2)、已收货(3)、退款驳回(-5) 均可申请退款
+        if (order.getStatus() != 2 && order.getStatus() != 3 && order.getStatus() != -5) {
             return new Result().fail("当前状态无法申请退款");
         }
 
@@ -462,9 +470,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         if (order == null || !order.getUserId().equals(userId)) {
             return new Result().fail("订单不存在");
         }
-        // 只允许删除已完结的订单：已取消(-1)、已收货(3)、退单成功(-3)、强制退单(-4)
+        // 只允许删除已完结的订单：已取消(-1)、已收货(3)、退单成功(-3)、强制退单(-4)、退款驳回(-5)
         int status = order.getStatus();
-        if (status != -1 && status != 3 && status != -3 && status != -4) {
+        if (status != -1 && status != 3 && status != -3 && status != -4 && status != -5) {
             return new Result().fail("当前订单状态不允许删除，请先完结订单");
         }
         // 同步删除订单项

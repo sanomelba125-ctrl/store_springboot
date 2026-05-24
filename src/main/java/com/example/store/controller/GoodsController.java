@@ -5,6 +5,8 @@ import com.example.store.config.RabbitMQConfig;
 import com.example.store.document.GoodsDoc;
 import com.example.store.dto.GoodsDTO;
 import com.example.store.entity.Goods;
+import com.example.store.entity.Shop;
+import com.example.store.mapper.ShopMapper;
 import com.example.store.listener.EsSyncListener;
 import com.example.store.repository.GoodsDocRepository;
 import com.example.store.service.GoodsService;
@@ -33,6 +35,14 @@ public class GoodsController {
     private RabbitTemplate rabbitTemplate;
     @Autowired
     private GoodsDocRepository goodsDocRepository;
+    @Autowired
+    private ShopMapper shopMapper;
+
+    private boolean checkShopOwner(String userId, String shopId) {
+        if (!StringUtils.hasText(shopId)) return false;
+        Shop shop = shopMapper.selectById(shopId);
+        return shop != null && userId.equals(shop.getUserId());
+    }
 
     // 从 Token 获取 UserId
    // 直接从 Security 上下文中拿，不需要再查 Redis
@@ -94,6 +104,22 @@ public class GoodsController {
     @Operation(summary = "新增/更新商品")
     @PostMapping("/save")
     public Result save(@RequestBody GoodsDTO goodsDTO) {
+        String userId = getUserId();
+        if (userId == null) return new Result().againLogin("请先登录");
+
+        if (StringUtils.hasText(goodsDTO.getId())) {
+            // 更新：校验原商品是否属于当前用户的店铺
+            Goods oldGoods = goodsService.getById(goodsDTO.getId());
+            if (oldGoods == null || !checkShopOwner(userId, oldGoods.getShopId())) {
+                return new Result().fail("非法操作：无权修改该商品");
+            }
+        } else {
+            // 新增：校验目标店铺是否属于当前用户
+            if (!checkShopOwner(userId, goodsDTO.getShopId())) {
+                return new Result().fail("非法操作：无权在该店铺新增商品");
+            }
+        }
+
         Goods goods = new Goods();
         BeanUtils.copyProperties(goodsDTO, goods);
 
@@ -116,6 +142,14 @@ public class GoodsController {
     @Operation(summary = "删除商品")
     @PostMapping("/delete")
     public Result delete(@RequestParam String id) {
+        String userId = getUserId();
+        if (userId == null) return new Result().againLogin("请先登录");
+
+        Goods goods = goodsService.getById(id);
+        if (goods == null || !checkShopOwner(userId, goods.getShopId())) {
+            return new Result().fail("非法操作：无权删除该商品");
+        }
+
         goodsService.removeById(id);
         // 通知 ES 删除文档
         sendEsSyncMsg("delete", id);
@@ -125,6 +159,14 @@ public class GoodsController {
     @Operation(summary = "商品上架/下架")
     @PostMapping("/status")
     public Result status(@RequestParam String id, @RequestParam Integer status) {
+        String userId = getUserId();
+        if (userId == null) return new Result().againLogin("请先登录");
+
+        Goods oldGoods = goodsService.getById(id);
+        if (oldGoods == null || !checkShopOwner(userId, oldGoods.getShopId())) {
+            return new Result().fail("非法操作：无权操作该商品");
+        }
+
         Goods goods = new Goods();
         goods.setId(id);
         goods.setStatus(status);
