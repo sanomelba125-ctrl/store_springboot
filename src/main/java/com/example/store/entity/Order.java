@@ -38,6 +38,7 @@ public class Order implements Serializable {
      * -2-申请退单
      * -3-退单成功
      * -4-强制退单
+     * -5-退款驳回
      */
     private Integer status;
 

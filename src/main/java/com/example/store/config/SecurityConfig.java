@@ -63,7 +63,9 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-resources/**",
             "/api/alipay/notify",
-            "/api/alipay/query"
+            "/api/alipay/query",
+            "/review/list/**",
+            "/review/stats/**"
     };
 
     @Bean
